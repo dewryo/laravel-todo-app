@@ -7,6 +7,15 @@
     <title>新規登録</title>
 </head>
 <body>
+    @if ($errors->any())
+    <div class="alert alert-danger">
+        <ul>
+            @foreach ($errors->all() as $error)
+                <li>{{ $error }}</li>
+            @endforeach
+        </ul>
+    </div>
+@endif
     <form action = "{{ route('user.signup') }}" method="POST">
         {!! csrf_field() !!}
         <p>名前:<input type="text" name="name" ></p>

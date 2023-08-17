@@ -7,6 +7,15 @@
     <title>ログイン</title>
 </head>
 <body>
+    @if ($errors->any())
+    <div class="alert alert-danger">
+        <ul>
+            @foreach ($errors->all() as $error)
+                <li>{{ $error }}</li>
+            @endforeach
+        </ul>
+    </div>
+@endif
     <form action = "{{ route('user.login') }}" method="POST">
         {!! csrf_field() !!}
         <p>メールアドレス:<input type="text" name="email" ></p>
