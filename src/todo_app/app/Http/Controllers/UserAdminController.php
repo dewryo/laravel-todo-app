@@ -13,13 +13,15 @@ use Illuminate\Validation\ValidationException;
 class UserAdminController extends Controller
 {
     public function store(RegisterRequest $request){
+        
         try {
-            User::create([
+            $user = User::create([
                 'name' => $request->name,
                 'email' => $request->email,
                 'password' => Hash::make($request->password)
             ]);
-
+            Auth::login($user);
+            
             return redirect()->route('todo.index')->with('success','登録完了');
         } catch (\Exception $e) {
             return redirect()->back()->withInput()->withErrors(['error' => '登録に失敗しました。']);

@@ -40,5 +40,12 @@ services:
     volumes:
       - asai-db-mysql-volume:/var/lib/mysql
 
+  mail:
+    image: axllent/mailpit:v1.8
+    container_name: mailpit
+    ports:
+      - 8025:8025
+      - 1025:1025
+
 volumes:
   asai-db-mysql-volume:
